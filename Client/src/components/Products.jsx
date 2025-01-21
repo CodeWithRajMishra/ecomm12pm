@@ -67,38 +67,41 @@ const Products = () => {
   ]
 
   return (
-    <div className="product">
-      <div className="product-bg">
-        <div className="product-bg-white">
-          <Container>
-            <Row>
-              <Col md={12}>
-                <div className="title">
-                  <h2>Our <strong className="black">Products</strong></h2>
-                  <span>We package the products with best services to make you a happy customer.</span>
-                </div>
-              </Col>
-            </Row>
-            <Row style={{ margin: '20px 0px', padding: '20px 0px' }}>
-              {
-                data.map((item, index) => (
-                  <Col xl={3} lg={3} md={6} sm={12}>
-                <Card style={{ backgroundColor: 'black', color: 'rgb(255, 215, 0)', borderRadius: '10px', margin: '10px 0px', border:"none" }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                  <Card.Img variant="top" src={item.img} alt="Product 1" className="product-img" />
-                  <Card.Body className="product-body">
-                    <Card.Title className="product-title">{item.title}</Card.Title>
-                    <Card.Text className="product-price">{item.price}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-                ))
-              }
-              
-            </Row>
-          </Container>
-        </div>
+    <>
+     <div className="product">
+         <div className="container">
+            <div className="row">
+               <div className="col-md-12">
+                  <div className="title">
+                     <h2>our <strong className="black">products</strong></h2>
+                     <span>We package the products with best services to make you a happy customer.</span>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
+      <div className="product-bg">
+         <div className="product-bg-white">
+         <div className="container">
+            <div className="row">
+               {
+                data.map((item, index) => (
+                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                  <div className="product-box">
+                     <i><img src={item.img}/></i>
+                     <h3>{item.title}</h3>
+                     <span>{item.price}</span>
+                  </div>
+               </div> 
+                ))
+               }
+              
+               </div>
+            </div>
+         </div>
+         
+      </div>
+    </>
   );
 };
 
