@@ -8,7 +8,12 @@ import p5 from '../assets/images/icon/p5.png';
 import p6 from '../assets/images/icon/p6.png';
 import p7 from '../assets/images/icon/p7.png';
 
+import { useNavigate } from 'react-router-dom';
+
 const Products = () => {
+
+  const navigate = useNavigate();
+
   const handleMouseOver = e => {
     e.currentTarget.style.boxShadow = '0 0 10px 0 rgba(0, 0, 0, 0.2)';
     e.currentTarget.style.padding = '10px';
@@ -24,46 +29,14 @@ const Products = () => {
   };
 
   const data =[
-    {
-      img:p1,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    },
-    {
-      img:p2,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    },
-    {
-      img:p3,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    },
-    {
-      img:p4,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    },
-    {
-      img:p5,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    },
-    {
-      img:p6,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    },
-    {
-      img:p7,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    },
-    {
-      img:p1,
-      title:"Norton Internet Security",
-      price:"$25.00"
-    }
+    { id:1, img:p1, title:"Norton Internet Security", price:"$25.00"},
+    { id:2, img:p2, title:"Norton Internet Security", price:"$25.00"},
+    { id:3, img:p3, title:"Norton Internet Security", price:"$25.00"},
+    { id:4, img:p4, title:"Norton Internet Security", price:"$25.00"},
+    { id:5, img:p5, title:"Norton Internet Security", price:"$25.00"},
+    { id:6, img:p6, title:"Norton Internet Security", price:"$25.00"},
+    { id:7, img:p7, title:"Norton Internet Security", price:"$25.00"},
+    { id:8, img:p1, title:"Norton Internet Security", price:"$25.00"}, 
   ]
 
   return (
@@ -86,7 +59,7 @@ const Products = () => {
             <div className="row">
                {
                 data.map((item, index) => (
-                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12" onClick={()=>{navigate(`/viewProduct/${item.id}`)}}>
                   <div className="product-box">
                      <i><img src={item.img}/></i>
                      <h3>{item.title}</h3>
