@@ -6,6 +6,8 @@ import Products from "./pages/Product"
 import Contact from "./pages/Contact"
 import ViewProduct from "./pages/ViewProduct"
 import Cart from "./pages/Cart"
+import AdminHome from "./pages/adminpages/AdminHome"
+import AdminLogin from "./pages/adminpages/AdminLogin"
 
 const App = () => {
   return (
@@ -20,6 +22,13 @@ const App = () => {
               <Route path="viewProduct/:id" element={<ViewProduct />}/>
               <Route path="cart" element={<Cart/>}/>
           </Route>
+        </Routes>
+
+        <Routes>
+           <Route path="/admin" element={<AdminHome/>} >
+             <Route index element={<AdminLogin/>} />
+           
+           </Route>
         </Routes>
       </BrowserRouter>
     </>

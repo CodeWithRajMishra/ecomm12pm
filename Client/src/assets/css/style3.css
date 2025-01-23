@@ -1,0 +1,28 @@
+#adminHeader
+{
+    width: 100%;
+    padding: 20px;
+    background-color: lightgreen;
+}
+
+
+
+#adminFooter
+{
+    width: 100%;
+    padding: 20px;
+    background-color: lightgreen;
+   
+}
+
+#adminForm
+{
+    display: flex;
+    justify-content: center;
+}
+
+#adminData
+{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
