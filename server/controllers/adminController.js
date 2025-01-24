@@ -4,21 +4,25 @@ const AdminModel=require("../models/adminModel");
 const adminLogin=async(req, res)=>{
     const { adminuser, adminpassword }= req.body;
     try {
-        const Admin= await AdminModel.find({adminid:adminuser});
+        const Admin= await AdminModel.findOne({adminid:adminuser});
+        
         if (!Admin)
         {
-            res.status(400).send({msg:"Invalid Admin ID"});
+            res.status(400).json({msg:"Invalid ID!"});
         }
-        if (Admin.adminpassword!=adminpassword)
+
+        if(Admin.adminpassword!=adminpassword)
         {
-            res.status(400).send({msg:"Invalid Admin Password"});
+            res.status(400).json({msg:"Invalid Password!"});
         }
-        res.status(200).send(Admin);
+
+        res.status(200).json(Admin);
+      
     } catch (error) {
          console.log(error);
     }
     
-    res.send("OK");
+   
 }
 
 

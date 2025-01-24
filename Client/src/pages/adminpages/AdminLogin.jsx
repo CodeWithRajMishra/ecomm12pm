@@ -1,19 +1,28 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import {message} from "antd";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+
 const AdminLogin=()=>{
     const [adminuser, setAdminUser] = useState("");
     const [adminpassword, setAdminPassword]=useState("");
-  
-     const handleSubmit=async(e)=>{
+    const navigate= useNavigate();
+    const handleSubmit=async(e)=>{
         e.preventDefault();
         try {
              let api="http://localhost:8000/admin/adminlogin";
-             const response= await axios.post(api, {adminuser:adminuser, adminpassword:adminpassword});
-             console.log(response.data);
+             const response= await axios.post(api, {adminuser:adminuser, adminpassword:adminpassword});  
+             if (response.status==200)
+             {
+                  message.success("Login Succesfully!");
+                  localStorage.setItem("adminid",response.data.adminid);
+                  navigate("./admindashboard");
+             }
+             console.log(response);
         } catch (error) { 
-              console.log(error);
+              message.error(error.response.data.msg);
         }
      }
     return(

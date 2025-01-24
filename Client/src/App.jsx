@@ -8,6 +8,9 @@ import ViewProduct from "./pages/ViewProduct"
 import Cart from "./pages/Cart"
 import AdminHome from "./pages/adminpages/AdminHome"
 import AdminLogin from "./pages/adminpages/AdminLogin"
+import AdminDashboard from "./pages/adminpages/AdminDashboard"
+import UploadProduct from "./pages/adminpages/UploadProduct"
+
 
 const App = () => {
   return (
@@ -27,6 +30,9 @@ const App = () => {
         <Routes>
            <Route path="/admin" element={<AdminHome/>} >
              <Route index element={<AdminLogin/>} />
+             <Route path="admindashboard" element={<AdminDashboard/>}>
+             <Route path="uploadproduct" element={<UploadProduct/>}/>
+             </Route>
            
            </Route>
         </Routes>
