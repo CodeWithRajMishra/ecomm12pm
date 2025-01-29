@@ -1,16 +1,54 @@
+import { useState, useEffect } from 'react';
+import axios from "axios";
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import p1 from '../assets/images/icon/p1.png';
-import p2 from '../assets/images/icon/p2.png';
-import p3 from '../assets/images/icon/p3.png';
-import p4 from '../assets/images/icon/p4.png';
-import p5 from '../assets/images/icon/p5.png';
-import p6 from '../assets/images/icon/p6.png';
-import p7 from '../assets/images/icon/p7.png';
-
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { useDispatch } from 'react-redux';
+import { addtoCart } from '../cartSlice';
+
 
 const Products = () => {
+   const [mydata, setMydata]= useState([]);
+
+   const dispatch= useDispatch();
+   const cursorPointer={
+      cursor:'pointer'
+   }
+
+   const loadData=async ()=>{
+       try {
+         let api="http://localhost:8000/products/productdisplay";
+         const response= await axios.get(api);
+         setMydata(response.data)
+         console.log(response.data);
+       } catch (error) {
+          console.log(error);
+       }
+   }
+
+   useEffect(()=>{
+      loadData();
+   }, [])
+
+
+   const proDisplay=(id)=>{
+      navigate(`/viewProduct/${id}`)
+   }
+
+   const proAns= mydata.map((item)=> (
+                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                  <div className="product-box">
+                     <i>
+                   <img style={cursorPointer}  onClick={()=>{proDisplay(item._id)}} src={`http://localhost:8000/${item.defaultImage}`}  style={{height:'200px'}}/>
+                        </i>
+                     <h3>{item.productname}</h3>
+                     <span>{item.productprice}</span>
+                     <br/>
+                     <Button variant="success" 
+                 onClick={()=>{dispatch(addtoCart({id:item._id, name:item.productname, brand:item.productbrand, category:item.productcategory, price:item.productprice, image:item.defaultImage}))}}    > Add to Cart</Button>
+                  </div>
+               </div> 
+                ))
 
   const navigate = useNavigate();
 
@@ -19,26 +57,17 @@ const Products = () => {
     e.currentTarget.style.padding = '10px';
     e.currentTarget.style.backgroundColor = 'rgb(255, 215, 0)';4
     e.currentTarget.style.color = 'black';
+    e.currentTarget.style.cursor='pointer';
   };
 
   const handleMouseOut = e => {
     e.currentTarget.style.boxShadow = 'none';
     e.currentTarget.style.padding = '0px';
     e.currentTarget.style.backgroundColor = 'black';
-    e.currentTarget.style.color = 'rgb(255, 215, 0)';
+    
   };
 
-  const data =[
-    { id:1, img:p1, title:"Norton Internet Security", price:"$25.00"},
-    { id:2, img:p2, title:"Norton Internet Security", price:"$25.00"},
-    { id:3, img:p3, title:"Norton Internet Security", price:"$25.00"},
-    { id:4, img:p4, title:"Norton Internet Security", price:"$25.00"},
-    { id:5, img:p5, title:"Norton Internet Security", price:"$25.00"},
-    { id:6, img:p6, title:"Norton Internet Security", price:"$25.00"},
-    { id:7, img:p7, title:"Norton Internet Security", price:"$25.00"},
-    { id:8, img:p1, title:"Norton Internet Security", price:"$25.00"}, 
-  ]
-
+ 
   return (
     <>
      <div className="product">
@@ -57,17 +86,7 @@ const Products = () => {
          <div className="product-bg-white">
          <div className="container">
             <div className="row">
-               {
-                data.map((item, index) => (
-                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12" onClick={()=>{navigate(`/viewProduct/${item.id}`)}}>
-                  <div className="product-box">
-                     <i><img src={item.img}/></i>
-                     <h3>{item.title}</h3>
-                     <span>{item.price}</span>
-                  </div>
-               </div> 
-                ))
-               }
+               { proAns  }
               
                </div>
             </div>
