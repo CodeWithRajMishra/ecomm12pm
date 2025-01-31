@@ -1,8 +1,33 @@
 import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
-
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 const TopHeader = () => {
+  const [username, setUsername]= useState("");
+  const [useremail, setUserEmail]= useState("");
+  const [isLogin, setIsLogin]= useState(false);
+  const navigate= useNavigate();
+
+  useEffect(()=>{
+    setUsername(localStorage.getItem("username"));
+    setUserEmail(localStorage.getItem("useremail"));
+  }, []);
+
+  useEffect(()=>{
+    setUsername(localStorage.getItem("username"));
+    setUserEmail(localStorage.getItem("useremail"));
+  }, [isLogin]);
+
+
+
+  const userLogout=()=>{
+    localStorage.removeItem("username");
+    localStorage.removeItem("useremail");
+    setIsLogin(true);
+    navigate("/");
+  }
+
   return(
     <>
     <Container fluid style={{backgroundColor: 'rgb(255, 215, 0)'}}>
@@ -25,7 +50,24 @@ const TopHeader = () => {
     </Col>
     <Col xs={12} md="auto">
       <div className="text-right">
-        <p className="text-black" style={{padding: '0.5rem'}}>long established fact that a reader will be</p>
+        <p className="text-black" style={{padding: '0.5rem'}}>
+          
+          {isLogin ? (<>
+             my company
+          </>) : (
+            <>
+             Welcome : {username} email : {useremail}    
+            
+            <button onClick={userLogout}>
+            Logout
+               </button>  
+
+            </>)
+          }
+
+               
+          
+          </p>
       </div>
     </Col>
   </Row>

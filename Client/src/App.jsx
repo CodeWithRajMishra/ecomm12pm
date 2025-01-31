@@ -10,6 +10,8 @@ import AdminHome from "./pages/adminpages/AdminHome"
 import AdminLogin from "./pages/adminpages/AdminLogin"
 import AdminDashboard from "./pages/adminpages/AdminDashboard"
 import UploadProduct from "./pages/adminpages/UploadProduct"
+import Signup from "./pages/Signup"
+import Login from "./pages/Login"
 
 
 const App = () => {
@@ -24,6 +26,8 @@ const App = () => {
               <Route path="contact" element={<Contact />}/>
               <Route path="viewProduct/:id" element={<ViewProduct />}/>
               <Route path="cart" element={<Cart/>}/>
+              <Route path="signup" element={<Signup/>}/>
+              <Route path="login" element={<Login/>} />
           </Route>
         </Routes>
 

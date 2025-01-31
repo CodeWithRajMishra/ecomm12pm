@@ -45,7 +45,7 @@ const Products = () => {
                      <span>{item.productprice}</span>
                      <br/>
                      <Button variant="success" 
-                 onClick={()=>{dispatch(addtoCart({id:item._id, name:item.productname, brand:item.productbrand, category:item.productcategory, price:item.productprice, image:item.defaultImage}))}}    > Add to Cart</Button>
+                 onClick={()=>{dispatch(addtoCart({id:item._id, name:item.productname, brand:item.productbrand, category:item.productcategory, price:item.productprice, image:item.defaultImage, qnty:1}))}}    > Add to Cart</Button>
                   </div>
                </div> 
                 ))
