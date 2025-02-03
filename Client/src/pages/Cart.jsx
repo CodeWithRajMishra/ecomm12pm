@@ -5,12 +5,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";
 import { qntyIncrease, qntyDecrease, itemRemove } from '../cartSlice';
-
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
  
   const Data=useSelector(state=>state.mycart.cart);
   const dispatch= useDispatch();
   console.log(Data);
+  const navigate= useNavigate();
+
+
+  const mynavigation=(e)=>{
+       e.preventDefault();
+       navigate("/checkout")
+  }
+
 
 
   let totalAmount=0;
@@ -49,7 +57,9 @@ const Cart = () => {
       <div style={{display: 'flex', justifyContent: 'space-between', padding: '10px'}}>
          <div><FaShoppingCart /> Your Cart  </div>
          <div><FaMoneyCheck /> Total: {totalAmount}</div>
-         <div><Button variant="primary" > <FaMoneyCheck /> Checkout </Button></div>
+         <div>
+          <Button variant="primary" 
+          onClick={mynavigation} > <FaMoneyCheck /> Checkout </Button></div>
       </div>
       
       <div style={{height:"50vh", overflowY:"scroll"}}>

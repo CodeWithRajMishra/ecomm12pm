@@ -12,6 +12,7 @@ import AdminDashboard from "./pages/adminpages/AdminDashboard"
 import UploadProduct from "./pages/adminpages/UploadProduct"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
+import CheckOut from "./pages/CheckOut"
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
               <Route path="cart" element={<Cart/>}/>
               <Route path="signup" element={<Signup/>}/>
               <Route path="login" element={<Login/>} />
+              <Route path="checkout" element={<CheckOut/>}/>
           </Route>
         </Routes>
 

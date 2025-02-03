@@ -40,7 +40,20 @@ const userLogin=async(req, res)=>{
   }
 }
 
+
+const userDetail=async(req, res)=>{
+  const {id} = req.body;
+   try {
+       const User= await UserModel.findById(id);
+       console.log(User);
+       res.status(200).send(User)
+   } catch (error) {
+      console.log(error);
+   }
+}
+
 module.exports={
     userSave,
-    userLogin
+    userLogin,
+    userDetail
 }
