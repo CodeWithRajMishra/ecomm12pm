@@ -1,6 +1,6 @@
 const AdminModel=require("../models/adminModel");
 const ProductModel= require("../models/productModel");
-
+const OrderModel= require("../models/orderModel");
 
 
 
@@ -46,8 +46,14 @@ const productSave=async(req, res)=>{
   res.send("data save!!!");
 }
 
+const orderDetail=async(req, res)=>{
+      const Order = await OrderModel.find();
+      res.status(200).send(Order);
+}
+
 
 module.exports ={
     adminLogin,
-    productSave
+    productSave,
+    orderDetail
 }

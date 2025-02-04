@@ -16,6 +16,8 @@ const AdminDashboard=()=>{
               <div id="mainLeftMenu"> 
           
                  <Link to="uploadproduct">Upload Product </Link>
+                 <br /> <br />
+                 <Link to="customerorder">Customer Orders </Link>
               </div>
               <div id="mainRightData"> 
                  

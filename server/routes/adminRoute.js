@@ -40,6 +40,7 @@ const storage = multer.diskStorage({
 
 route.post("/adminlogin", AdminController.adminLogin);
 route.post("/productsave",upload.array('files', 10), AdminController.productSave);
+route.get("/orderdetail", AdminController.orderDetail);
 
 
 module.exports=route;

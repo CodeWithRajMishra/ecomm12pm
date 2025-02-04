@@ -8,6 +8,7 @@ const CheckOut=()=>{
      const [mydata, setMydata]= useState({});
     const navigate= useNavigate();
     const Product=useSelector(state=>state.mycart.cart);
+    console.log(Product);
     useEffect(()=>{
         if(!localStorage.getItem("username"))
         {
@@ -31,21 +32,21 @@ const CheckOut=()=>{
 
 
 
-  const [shoe,setShoe] = useState({
-    name: "Training Shoes",
-    creator: "Nike",
-    img: "https://images.pexels.com/photos/3490360/pexels-photo-3490360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    price: 500,
-});
+//   const [shoe,setShoe] = useState({
+//     name: "Training Shoes",
+//     creator: "Nike",
+//     img: "https://images.pexels.com/photos/3490360/pexels-photo-3490360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+//     price: 500,
+// });
 
 const initPay = (data) => {
   const options = {
     key : "rzp_test_pzkHWxo3sRdVQW",
     amount: data.amount,
     currency: data.currency,
-    name: shoe.name,
+    name: productName,
     description: "Test",
-    image:shoe.img,
+    image: `http://localhost:8000/${myimg}`,
     order_id: data.id,
     handler: async (response) => {
       try {
@@ -66,7 +67,7 @@ const initPay = (data) => {
 const handlePay = async () => {
   try {
     const orderURL = "http://localhost:8000/api/payment/orders";
-    const {data} = await axios.post(orderURL,{amount: shoe.price});
+    const {data} = await axios.post(orderURL,{amount: totalAmount, productname:productName, customername:mydata.name, address:mydata.address, email:mydata.email, id:mydata._id});
     console.log(data);
     initPay(data.data);
   } catch (error) {
@@ -85,9 +86,11 @@ const handlePay = async () => {
     
 let totalAmount=0;
 let productName="";
+let myimg="";
 const ans=Product.map((key)=>{
         totalAmount+=key.price*key.qnty;
         productName+=key.name+",";
+        myimg=key.image;
         return(
             <>
                <h3> {}  </h3>

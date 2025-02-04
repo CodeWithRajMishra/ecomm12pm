@@ -13,6 +13,7 @@ import UploadProduct from "./pages/adminpages/UploadProduct"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import CheckOut from "./pages/CheckOut"
+import CustomerOrders from "./pages/adminpages/CustomerOrders"
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
              <Route index element={<AdminLogin/>} />
              <Route path="admindashboard" element={<AdminDashboard/>}>
              <Route path="uploadproduct" element={<UploadProduct/>}/>
+             <Route path="customerorder" element={<CustomerOrders/>}/>
              </Route>
            
            </Route>
